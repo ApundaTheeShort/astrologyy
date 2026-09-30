@@ -43,7 +43,7 @@ Use these Render Web Service settings:
 
 ```text
 Environment: Python 3
-Build command: pip install -r requirements.txt
+Build command: pip install -r requirements.txt && python manage.py collectstatic --noinput
 Start command: gunicorn core.wsgi:application --bind 0.0.0.0:$PORT
 ```
 

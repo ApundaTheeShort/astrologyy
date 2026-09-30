@@ -1,0 +1,104 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Curiosity Test | Official Assessment</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/site.css' %}" />
+  </head>
+  <body>
+    <div class="grain"></div>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="The Curiosity Test home"
+        ><span class="brand-mark">?</span><span>THE<br />CURIOSITY TEST</span></a
+      >
+      <span class="top-note">EST. 2024 / CLASSIFIED</span>
+    </header>
+
+    <main class="shell form-shell">
+      <section class="intro form-content">
+        <p class="eyebrow">
+          <span class="dot"></span> THE INTERNET'S MOST OFFICIAL TEST
+        </p>
+        <h1>What does<br />your name<br /><em>reveal?</em></h1>
+        <p class="lede">
+          Enter your name and unlock a highly scientific assessment. Your
+          personalized result is waiting.
+        </p>
+      </section>
+
+      <section class="card form-content" aria-labelledby="form-title">
+        <div class="card-header">
+          <span>APPLICATION FORM / 001</span
+          ><span class="stamp">CLASSIFIED</span>
+        </div>
+        <div class="card-body">
+          <div class="step">
+            <span class="step-number">01</span><span class="step-line"></span
+            ><span>BEGIN THE ASSESSMENT</span>
+          </div>
+          <h2 id="form-title">First, tell us<br />your name.</h2>
+          <form id="curiosity-form">
+            {% csrf_token %}
+            <label for="name">ENTER YOUR NAME</label>
+            <div class="input-wrap">
+              <input
+                id="name"
+                name="name"
+                type="text"
+                maxlength="80"
+                autocomplete="name"
+                placeholder="e.g. John Doe"
+                required
+              /><span>↗</span>
+            </div>
+            <p class="form-hint">
+              One name. One result. No complicated sign-up required.
+            </p>
+            <button type="submit" id="submit-button">
+              <span class="button-label">SUBMIT</span
+              ><span class="button-arrow">→</span>
+            </button>
+            <p class="error" id="error" role="alert">{{ error }}</p>
+          </form>
+        </div>
+        <div class="card-footer">
+          <span>⚠ RESULTS MAY ALTER YOUR PERSONALITY</span
+          ><span>SECURE • 100% UNNECESSARY</span>
+        </div>
+      </section>
+      <section class="analysis homepage-reveal" id="analysis" aria-live="polite" hidden>
+        <p class="eyebrow"><span class="dot"></span> SECURE AI ANALYSIS</p>
+        <div class="loader-orbit" aria-hidden="true"></div>
+        <h1>Preparing your<br>official result<span class="loading-dots"></span></h1>
+        <div class="analysis-line"><span id="analysis-step">Connecting to the assessment engine...</span><span id="analysis-status">STARTING</span></div>
+        <div class="progress-track"><div class="progress-bar" id="progress-bar"></div></div>
+      </section>
+      <section class="result homepage-reveal" id="result" hidden aria-live="polite">
+        <div class="rainbow-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="result-top"><span class="eyebrow"><span class="dot"></span> ASSESSMENT COMPLETE</span><span class="result-number">VERDICT / 01</span></div>
+        <p class="result-label">THE PRIDE SOCIETY PROCLAIMS</p>
+        <h1>Congratulations,<br><strong id="result-name"></strong><br><em>you're gay.</em></h1>
+        <p class="pride-note">Proudly authentic. Loudly yourself. Always welcome.</p>
+        <div class="result-actions">
+          <button class="speak-button" id="speak-button" type="button"><span>◖</span> HEAR THE VERDICT</button>
+          <button class="download-button" id="download-button" type="button"><span>↓</span> DOWNLOAD CERTIFICATE</button>
+        </div>
+        <p class="download-status" id="download-status">Your result is ready.</p>
+        <audio id="verdict-audio" preload="auto" controls hidden></audio>
+      </section>
+    </main>
+    <footer class="footer">
+      <span>© THE CURIOSITY TEST</span
+      ><span>EXPECT THE UNEXPECTED <b aria-label="sparkle">✦</b></span>
+    </footer>
+    <script src="{% static 'js/site.js' %}"></script>
+  </body>
+</html>

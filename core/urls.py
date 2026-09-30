@@ -17,6 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from . import views
+
 urlpatterns = [
+    path('', views.home, name='home'),
+    path('certificate/view/', views.certificate_page, name='certificate-page'),
+    path('verdict-audio/', views.verdict_audio, name='verdict-audio'),
+    path('certificate/', views.certificate, name='certificate'),
     path('admin/', admin.site.urls),
 ]

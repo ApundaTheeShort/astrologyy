@@ -44,6 +44,10 @@ if os.environ.get('VERCEL_URL'):
     vercel_host = os.environ['VERCEL_URL'].removeprefix('https://')
     if vercel_host not in ALLOWED_HOSTS:
         ALLOWED_HOSTS.append(vercel_host)
+if os.environ.get('RENDER_EXTERNAL_HOSTNAME'):
+    render_host = os.environ['RENDER_EXTERNAL_HOSTNAME'].removeprefix('https://')
+    if render_host not in ALLOWED_HOSTS:
+        ALLOWED_HOSTS.append(render_host)
 
 
 # Application definition
@@ -147,6 +151,9 @@ if not DEBUG:
     if os.environ.get('VERCEL_URL'):
         CSRF_TRUSTED_ORIGINS.append(
             f"https://{os.environ['VERCEL_URL'].removeprefix('https://')}")
+    if os.environ.get('RENDER_EXTERNAL_HOSTNAME'):
+        CSRF_TRUSTED_ORIGINS.append(
+            f"https://{os.environ['RENDER_EXTERNAL_HOSTNAME'].removeprefix('https://')}")
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 

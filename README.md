@@ -30,3 +30,22 @@ access at runtime.
 
 Static CSS and JavaScript files are published in `public/static/` and served
 from `/static/` before requests reach the Django serverless function.
+
+## Deploy to Render
+
+Render automatically provides `RENDER_EXTERNAL_HOSTNAME`. Django adds that
+hostname to `ALLOWED_HOSTS` and `CSRF_TRUSTED_ORIGINS`. Set
+`DJANGO_SECRET_KEY` and `DJANGO_DEBUG=False` in the Render environment.
+For a custom domain, also add its hostname to `DJANGO_ALLOWED_HOSTS` and its
+full HTTPS origin to `CSRF_TRUSTED_ORIGINS`.
+
+Use these Render Web Service settings:
+
+```text
+Environment: Python 3
+Build command: pip install -r requirements.txt
+Start command: gunicorn core.wsgi:application --bind 0.0.0.0:$PORT
+```
+
+Set the health check path to `/` if you enable health checks. Render serves
+the application from the repository root; no custom root directory is needed.

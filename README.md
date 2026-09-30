@@ -27,3 +27,6 @@ runtime. Configure these Vercel environment variables before deploying:
 Vercel installs the packages in `requirements.txt` automatically. The
 `/verdict-audio/` endpoint uses gTTS and therefore needs outbound network
 access at runtime.
+
+Static CSS and JavaScript files are served from `/static/` before requests
+reach the Django serverless function.

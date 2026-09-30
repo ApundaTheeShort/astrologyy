@@ -38,7 +38,8 @@ ALLOWED_HOSTS = [
     if host.strip()
 ]
 if os.environ.get('VERCEL_URL'):
-    ALLOWED_HOSTS.append(os.environ['VERCEL_URL'].removeprefix('https://'))
+    ALLOWED_HOSTS.append(os.environ['VERCEL_URL'].removeprefix(
+        'https://ai-astrology-flax.vercel.app'))
 
 
 # Application definition
@@ -140,7 +141,8 @@ if not DEBUG:
         if origin.strip()
     ]
     if os.environ.get('VERCEL_URL'):
-        CSRF_TRUSTED_ORIGINS.append(f"https://{os.environ['VERCEL_URL'].removeprefix('https://')}")
+        CSRF_TRUSTED_ORIGINS.append(
+            f"https://{os.environ['VERCEL_URL'].removeprefix('https://')}")
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 

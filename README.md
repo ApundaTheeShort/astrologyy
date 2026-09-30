@@ -28,5 +28,5 @@ Vercel installs the packages in `requirements.txt` automatically. The
 `/verdict-audio/` endpoint uses gTTS and therefore needs outbound network
 access at runtime.
 
-Static CSS and JavaScript files are served from `/static/` before requests
-reach the Django serverless function.
+Static CSS and JavaScript files are published in `public/static/` and served
+from `/static/` before requests reach the Django serverless function.

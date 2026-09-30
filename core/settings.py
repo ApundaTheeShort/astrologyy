@@ -33,13 +33,17 @@ ALLOWED_HOSTS = [
     host.strip()
     for host in os.environ.get(
         'DJANGO_ALLOWED_HOSTS',
-        'localhost,127.0.0.1,testserver',
+        'localhost,127.0.0.1,testserver,.vercel.app',
     ).split(',')
     if host.strip()
 ]
+if os.environ.get('VERCEL') or os.environ.get('VERCEL_URL'):
+    if '.vercel.app' not in ALLOWED_HOSTS:
+        ALLOWED_HOSTS.append('.vercel.app')
 if os.environ.get('VERCEL_URL'):
-    ALLOWED_HOSTS.append(os.environ['VERCEL_URL'].removeprefix(
-        'https://ai-astrology-flax.vercel.app'))
+    vercel_host = os.environ['VERCEL_URL'].removeprefix('https://')
+    if vercel_host not in ALLOWED_HOSTS:
+        ALLOWED_HOSTS.append(vercel_host)
 
 
 # Application definition
